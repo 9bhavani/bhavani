@@ -3,5 +3,9 @@ this is my text file
 
 =======
 this is my text file apple
+<<<<<<< HEAD
 JGJYUJYM 
 >>>>>>> bcf444962c52c549f03b31a32354d297eac4849c
+=======
+
+>>>>>>> fff115c83a7c49f01d6a165a50e66cb476c110d7
