@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Sum Function</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 1rem; }
+        input { width: 4rem; margin-right: .5rem; }
+        #result { font-weight: bold; margin-left: .5rem; }
+    </style>
+</head>
+<body>
+    <h1>Sum two integers</h1>
+
+    <label>
+        a:
+        <input id="a" type="number" value="2" />
+    </label>
+    <label>
+        b:
+        <input id="b" type="number" value="3" />
+    </label>
+    <button id="calc">Show sum</button>
+    <span>Result: <span id="result">—</span></span>
+
+    <script>
+        // Takes two integer parameters (or numeric strings), displays their sum in the #result element,
+        // and returns the numeric sum.
+        function displaySum(a, b) {
+            // Ensure numeric conversion to integers
+            const ai = parseInt(a, 10) || 0;
+            const bi = parseInt(b, 10) || 0;
+            const sum = ai + bi;
+            const out = document.getElementById('result');
+            if (out) out.textContent = String(sum);
+            return sum;
+        }
+
+        // Wire up the button to read inputs and call the function whenever clicked.
+        document.getElementById('calc').addEventListener('click', function () {
+            const a = document.getElementById('a').value;
+            const b = document.getElementById('b').value;
+            displaySum(a, b);
+        });
+
+        // Example: call once on load
+        displaySum(2, 3);
+    </script>
+</body>
+</html>
