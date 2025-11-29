@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elderly Care Innovation – Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                        url('https://images.unsplash.com/photo-1524638431109-93d95c968f03');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 420px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .brand h2 { margin: 0; color: #1a4d6e; }
+        .brand p { margin: 6px 0 0; font-size: 14px; color: #555; }
+
+        .role-select {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .role-select button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .role-select button.active {
+            background: #1a4d6e;
+            color: white;
+        }
+
+        label { font-weight: bold; font-size: 14px; }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin: 6px 0 14px;
+            font-size: 15px;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box span {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 13px;
+            color: #1a4d6e;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #1a4d6e;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #1a4d6e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card" id="loginCard">
+        <div class="brand">
+            <h2>Elderly Care Innovation</h2>
+            <p>Safe Living for Seniors</p>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="role-select">
+            <button class="active" onclick="selectRole(this)">Elderly</button>
+            <button onclick="selectRole(this)">Caretaker</button>
+        </div>
+
+        <!-- Language Selector -->
+        <label>Language</label>
+        <select id="languageSelect" onchange="changeLanguage()">
+  <option value="en">English</option>
+  <option value="hi">Hindi</option>
+  <option value="kn">Kannada</option>
+  <option value="te">Telugu</option>
+</select>
+
+
+        <!-- Login Inputs -->
+        <label id="labelMobile">Mobile / Email</label>
+<input type="text" id="inputMobile" placeholder="Enter mobile number or email">
+
+<label id="labelPassword">Password</label>
+<div class="password-box">
+  <input type="password" id="password" placeholder="Enter password">
+  <span onclick="togglePassword()">Show</span>
+</div>
+
+<button class="btn" id="btnLogin" onclick="goToDashboard()">Login</button>
+
+<div class="links">
+  <a href="#" id="linkForgot">Forgot Password?</a>
+  <a href="register.html" target="_blank">Create Account</a>
+
+</div>
+
+    </div>
+
+    
+    <script>
+        function togglePassword() {
+            let pass = document.getElementById("password");
+            pass.type = pass.type === "password" ? "text" : "password";
+        }
+
+        function selectRole(btn) {
+            document.querySelectorAll(".role-select button")
+                .forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        }
+
+        function goToDashboard() {
+            let selectedRole = document.querySelector(".role-select .active").innerText;
+
+            if (selectedRole === "Elderly") {
+                window.location.href = "elder_dashboard.html";
+            } else if (selectedRole === "Caretaker") {
+                window.location.href = "caretaker_dashboard.html";
+            }
+        }
+    </script>
+
+</body>
+
+<!-- Add this at the BOTTOM -->
+<script>
+document.getElementById("languageSelect").addEventListener("change", function () {
+    localStorage.setItem("lang", this.value);
+});
+</script>
+
+</body>
+</html>
+
+
+
+<script>
+  
+  document.getElementById("languageSelect").addEventListener("change", function() {
+    localStorage.setItem("lang", this.value);
+  });
+</script>
+
+<script>
+  const translations = {
+    en: {
+      mobileLabel: "Mobile / Email",
+      mobilePlaceholder: "Enter mobile number or email",
+      passwordLabel: "Password",
+      passwordPlaceholder: "Enter password",
+      loginBtn: "Login",
+      forgotLink: "Forgot Password?",
+      registerLink: "Create Account",
+      showPassword: "Show"
+    },
+    hi: {
+      mobileLabel: "मोबाइल / ईमेल",
+      mobilePlaceholder: "मोबाइल नंबर या ईमेल दर्ज करें",
+      passwordLabel: "पासवर्ड",
+      passwordPlaceholder: "पासवर्ड दर्ज करें",
+      loginBtn: "लॉगिन",
+      forgotLink: "पासवर्ड भूल गए?",
+      registerLink: "खाता बनाएं",
+      showPassword: "देखें"
+    },
+    kn: {
+      mobileLabel: "ಮೊಬೈಲ್ / ಇಮೇಲ್",
+      mobilePlaceholder: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಅಥವಾ ಇಮೇಲ್ ನಮೂದಿಸಿ",
+      passwordLabel: "ಪಾಸ್ವರ್ಡ್",
+      passwordPlaceholder: "ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ",
+      loginBtn: "ಲಾಗಿನ್",
+      forgotLink: "ಪಾಸ್ವರ್ಡ್ ಮರೆತಿರಾ?",
+      registerLink: "ಖಾತೆ ರಚಿಸಿ",
+      showPassword: "ತೋರಿಸು"
+    },
+    te: {
+      mobileLabel: "మొబైల్ / ఇమెయిల్",
+      mobilePlaceholder: "మొబైల్ నంబర్ లేదా ఇమెయిల్ నమోదు చేయండి",
+      passwordLabel: "పాస్వర్డ్",
+      passwordPlaceholder: "పాస్వర్డ్ నమోదు చేయండి",
+      loginBtn: "లాగిన్",
+      forgotLink: "పాస్వర్డ్ మర్చిపోయారా?",
+      registerLink: "ఖాతాను సృష్టించండి",
+      showPassword: "తొరచు"
+    }
+  };
+
+  function changeLanguage() {
+    const lang = document.getElementById("languageSelect").value;
+    const t = translations[lang];
+
+    document.getElementById("labelMobile").innerText = t.mobileLabel;
+    document.getElementById("inputMobile").placeholder = t.mobilePlaceholder;
+    document.getElementById("labelPassword").innerText = t.passwordLabel;
+    document.getElementById("password").placeholder = t.passwordPlaceholder;
+    document.getElementById("btnLogin").innerText = t.loginBtn;
+    document.getElementById("linkForgot").innerText = t.forgotLink;
+    document.getElementById("linkRegister").innerText = t.registerLink;
+
+    document.querySelector(".password-box span").innerText = t.showPassword;
+  }
+</script>
+
+</html>
+
+
+   
+   

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Live Health Status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/feather-icons"></script>
+<style>
+body { font-family: Arial; background: #eef5f9; margin:0; padding:0; }
+header { background: #1a4d6e; color: white; padding: 18px; text-align: center; font-size: 22px; font-weight: bold; }
+.container { padding: 20px; }
+.card { background:white; border-radius: 15px; padding: 15px; margin-bottom:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+.card h3 { color:#1a4d6e; margin-bottom:10px; }
+button { background:#1a4d6e; color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer; margin-right:5px; }
+.back-btn { margin: 10px 0; display:inline-block; background:#1a4d6e; color:white; padding:10px 18px; border-radius:12px; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header id="pageHeader">Live Health Status</header>
+<div class="container">
+    <a class="back-btn" href="caretaker_dashboard.html" id="backBtn">← Back to Dashboard</a>
+
+    <div class="card">
+        <h3 id="user1Name">John Doe</h3>
+        <p id="bp1">Blood Pressure: 120/80 mmHg</p>
+        <p id="sugar1">Blood Sugar: 95 mg/dL</p>
+        <p id="hr1">Heart Rate: 72 bpm</p>
+        <button onclick="viewDetails()" id="viewBtn">View Full Report</button>
+    </div>
+
+    <div class="card">
+        <h3 id="user2Name">Mary Smith</h3>
+        <p id="bp2">Blood Pressure: 135/85 mmHg</p>
+        <p id="sugar2">Blood Sugar: 110 mg/dL</p>
+        <p id="hr2">Heart Rate: 78 bpm</p>
+        <button onclick="viewDetails()" id="viewBtn2">View Full Report</button>
+    </div>
+
+</div>
+
+<script>
+feather.replace();
+
+// Get saved language from login
+const lang = localStorage.getItem("lang") || "en";
+
+// Translation dictionary
+const translations = {
+  en: {
+    header: "Live Health Status",
+    back: "← Back to Dashboard",
+    users: [
+      {name:"John Doe", bp:"Blood Pressure: 120/80 mmHg", sugar:"Blood Sugar: 95 mg/dL", hr:"Heart Rate: 72 bpm", btn:"View Full Report"},
+      {name:"Mary Smith", bp:"Blood Pressure: 135/85 mmHg", sugar:"Blood Sugar: 110 mg/dL", hr:"Heart Rate: 78 bpm", btn:"View Full Report"}
+    ]
+  },
+  hi: {
+    header: "लाइव स्वास्थ्य स्थिति",
+    back: "← डैशबोर्ड पर वापस जाएं",
+    users: [
+      {name:"जॉन डो", bp:"ब्लड प्रेशर: 120/80 mmHg", sugar:"ब्लड शुगर: 95 mg/dL", hr:"हार्ट रेट: 72 bpm", btn:"पूर्ण रिपोर्ट देखें"},
+      {name:"मैरी स्मिथ", bp:"ब्लड प्रेशर: 135/85 mmHg", sugar:"ब्लड शुगर: 110 mg/dL", hr:"हार्ट रेट: 78 bpm", btn:"पूर्ण रिपोर्ट देखें"}
+    ]
+  },
+  kn: {
+    header: "ಲೈವ್ ಆರೋಗ್ಯ ಸ್ಥಿತಿ",
+    back: "← ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹಿಂತಿರುಗಿ",
+    users: [
+      {name:"ಜಾನ್ ಡೋ", bp:"ರಕ್ತದ ಒತ್ತಡ: 120/80 mmHg", sugar:"ರಕ್ತ ಸಕ್ಕರೆ: 95 mg/dL", hr:"ಹೃದಯಗತಿ: 72 bpm", btn:"ಪೂರ್ಣ ವರದಿ ವೀಕ್ಷಿಸಿ"},
+      {name:"ಮೇರಿ ಸ್ಮಿತ್", bp:"ರಕ್ತದ ಒತ್ತಡ: 135/85 mmHg", sugar:"ರಕ್ತ ಸಕ್ಕರೆ: 110 mg/dL", hr:"ಹೃದಯಗತಿ: 78 bpm", btn:"ಪೂರ್ಣ ವರದಿ ವೀಕ್ಷಿಸಿ"}
+    ]
+  },
+  te: {
+    header: "లైవ్ ఆరోగ్య స్థితి",
+    back: "← డాష్‌బోర్డ్‌కి తిరిగి వెళ్ళు",
+    users: [
+      {name:"జాన్ డో", bp:"రక్తపోటు: 120/80 mmHg", sugar:"రక్తంలో షుగర్: 95 mg/dL", hr:"హార్ట్ రేట్: 72 bpm", btn:"పూర్తి రిపోర్ట్ చూడండి"},
+      {name:"మేరీ స్మిత్", bp:"రక్తపోటు: 135/85 mmHg", sugar:"రక్తంలో షుగర్: 110 mg/dL", hr:"హార్ట్ రేట్: 78 bpm", btn:"పూర్తి రిపోర్ట్ చూడండి"}
+    ]
+  }
+};
+
+// Apply translations
+document.getElementById("pageHeader").innerText = translations[lang].header;
+document.getElementById("backBtn").innerText = translations[lang].back;
+
+const users = translations[lang].users;
+document.getElementById("user1Name").innerText = users[0].name;
+document.getElementById("bp1").innerText = users[0].bp;
+document.getElementById("sugar1").innerText = users[0].sugar;
+document.getElementById("hr1").innerText = users[0].hr;
+document.getElementById("viewBtn").innerText = users[0].btn;
+
+document.getElementById("user2Name").innerText = users[1].name;
+document.getElementById("bp2").innerText = users[1].bp;
+document.getElementById("sugar2").innerText = users[1].sugar;
+document.getElementById("hr2").innerText = users[1].hr;
+document.getElementById("viewBtn2").innerText = users[1].btn;
+
+// Dummy function
+function viewDetails(){ alert(translations[lang].users[0].btn); }
+</script>
+
+</body>
+</html>

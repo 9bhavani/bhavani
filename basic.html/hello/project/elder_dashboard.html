@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elderly Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ICONS (Feather Icons CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #eef5f9;
+    }
+
+    header {
+      background: #1a4d6e;
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 18px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 26px 10px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card i {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 10px;
+      color: #1a4d6e;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      color: #1a4d6e;
+      margin-top: 6px;
+    }
+
+    .sos {
+      background: #c0392b;
+      color: white;
+    }
+
+    .sos i {
+      color: white;
+    }
+
+    .sos h3 {
+      color: white;
+    }
+
+    footer {
+      background: #1a4d6e;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>Elderly Dashboard</header>
+
+  <div class="container">
+
+    <a href="#"><div class="card">
+      <i data-feather="heart"></i>
+      <h3>My Health</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="bell"></i>
+      <h3>Medicine Reminder</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="calendar"></i>
+      <h3>Doctor Appointment</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="video"></i>
+      <h3>Video Call Family</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="smile"></i>
+      <h3>Mental Wellness</h3>
+    </div></a>
+
+    <a href="#"><div class="card sos">
+      <i data-feather="alert-triangle"></i>
+      <h3>Emergency SOS</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="file-text"></i>
+      <h3>My Reports</h3>
+    </div></a>
+
+    <a href="#"><div class="card">
+      <i data-feather="map-pin"></i>
+      <h3>Location Sharing</h3>
+    </div></a>
+
+  </div>
+
+  <footer>Elderly Care Innovation © 2025</footer>
+
+  <script>
+    feather.replace();
+  </script>
+
+</body>
+<script>
+
+const lang = localStorage.getItem("lang") || "en";
+
+
+const translations = {
+  en: {
+    header: "Elderly Dashboard",
+    cards: ["My Health","Medicine Reminder","Doctor Appointment","Video Call Family","Mental Wellness","Emergency SOS","My Reports","Location Sharing"]
+  },
+  hi: {
+    header: "वृद्ध व्यक्ति डैशबोर्ड",
+    cards: ["मेरी सेहत","दवा अनुस्मारक","डॉक्टर अपॉइंटमेंट","परिवार से वीडियो कॉल","मानसिक स्वास्थ्य","आपातकालीन SOS","मेरी रिपोर्ट्स","स्थान साझा करना"]
+  },
+  kn: {
+    header: "ಜ್ಞಾನಜೀವಿಗಳ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    cards: ["ನನ್ನ ಆರೋಗ್ಯ","ಔಷಧಿ ರಿಮೈಂಡರ್","ಡಾಕ್ಟರ್ ನಿಯೋಜನೆ","ಕುಟುಂಬದೊಂದಿಗೆ ವೀಡಿಯೊ ಕರೆ","ಮಾನಸಿಕ ಕ್ಷೇಮ","ತುರ್ತು SOS","ನನ್ನ ವರದಿ","ಸ್ಥಳ ಹಂಚಿಕೊಳ್ಳುವಿಕೆ"]
+  },
+  te: {
+    header: "వృద్ధుల డాష్‌బోర్డ్",
+    cards: ["నా ఆరోగ్యం","మందు రిమైండర్","డాక్టర్ అపాయింట్‌మెంట్","కుటుంబంతో వీడియో కాల్","మానసిక స్వాస్థ్యము","అత్యవసర SOS","నా రిపోర్టులు","స్థానం పంచుకోవడం"]
+  }
+};
+
+
+document.querySelector("header").innerText = translations[lang].header;
+
+const cards = document.querySelectorAll(".card h3");
+translations[lang].cards.forEach((text, index) => {
+    if(cards[index]) cards[index].innerText = text;
+});
+</script>
+
+
+
+</html>

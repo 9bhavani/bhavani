@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emergency Alerts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/feather-icons"></script>
+<style>
+body { font-family: Arial; background: #eef5f9; margin:0; padding:0; }
+header { background: #1a4d6e; color: white; padding: 18px; text-align: center; font-size: 22px; font-weight: bold; }
+.container { padding: 20px; }
+.card { background:white; border-radius: 15px; padding: 15px; margin-bottom:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+.card h3 { color:#1a4d6e; margin-bottom:10px; }
+.card p { margin:5px 0; }
+.alert { color: red; font-weight: bold; }
+.back-btn { margin: 10px 0; display:inline-block; background:#1a4d6e; color:white; padding:10px 18px; border-radius:12px; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header>Emergency Alerts</header>
+<div class="container">
+    <a class="back-btn" href="caretaker_dashboard.html">← Back to Dashboard</a>
+
+    <div class="card">
+        <h3>John Doe</h3>
+        <p>Alert Type: <span class="alert">Fall Detected</span></p>
+        <p>Time: 11:15 AM, 28 Nov 2025</p>
+        <p>Location: Living Room</p>
+        <button onclick="acknowledge()">Acknowledge</button>
+    </div>
+
+    <div class="card">
+        <h3>Mary Smith</h3>
+        <p>Alert Type: <span class="alert">High Blood Pressure</span></p>
+        <p>Time: 10:50 AM, 28 Nov 2025</p>
+        <p>Location: Bedroom</p>
+        <button onclick="acknowledge()">Acknowledge</button>
+    </div>
+
+</div>
+
+<script>
+feather.replace();
+function acknowledge() { alert('Alert acknowledged!'); }
+</script>
+</body>
+</html>

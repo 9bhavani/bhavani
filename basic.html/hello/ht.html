@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Find Smallest Number</title>
+  <style>
+    /* page + container */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      width: 420px;
+      border: 2px solid #222;
+      padding: 22px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      width: 110px;
+      font-size: 14px;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #9aa0a6;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.08);
+    }
+
+    .btn-wrap {
+      display:flex;
+      justify-content: center;
+      margin: 12px 0 18px;
+    }
+
+    button#findBtn {
+      background: white;
+      border: 2px solid #222;
+      padding: 10px 28px;
+      font-weight: 700;
+      border-radius: 22px;
+      cursor: pointer;
+      letter-spacing: 0.6px;
+      transition: all 0.12s ease;
+    }
+    button#findBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    }
+
+    .error {
+      border-color: #e03e2d !important;
+      box-shadow: 0 0 0 3px rgba(224,62,45,0.08);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: -8px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Find smallest number">
+    <div class="row">
+      <label for="num1">First Num</label>
+      <input id="num1" type="number" inputmode="decimal" step="any" placeholder="Enter first number" />
+    </div>
+
+    <div class="row">
+      <label for="num2">Second num</label>
+      <input id="num2" type="number" inputmode="decimal" step="any" placeholder="Enter second number" />
+    </div>
+
+    <div class="row">
+      <label for="num3">Third Num</label>
+      <input id="num3" type="number" inputmode="decimal" step="any" placeholder="Enter third number" />
+    </div>
+
+    <div class="btn-wrap">
+      <button id="findBtn" type="button">FIND SMALLEST</button>
+    </div>
+
+    <div class="row" style="margin-top:8px;">
+      <label for="result">Smallest Number</label>
+      <input id="result" type="text" readonly aria-readonly="true" placeholder="Result will appear here" />
+    </div>
+    
+  </div>
+
+  <script>
+    (function(){
+      const in1 = document.getElementById('num1');
+      const in2 = document.getElementById('num2');
+      const in3 = document.getElementById('num3');
+      const btn = document.getElementById('findBtn');
+      const out = document.getElementById('result');
+
+      function clearErrors() {
+        [in1, in2, in3].forEach(i => i.classList.remove('error'));
+      }
+
+      function showErrorField(field) {
+        field.classList.add('error');
+      }
+
+      function findSmallest() {
+        clearErrors();
+        // read values
+        const v1 = in1.value.trim();
+        const v2 = in2.value.trim();
+        const v3 = in3.value.trim();
+
+        // If all empty -> show blank
+        if (v1 === '' && v2 === '' && v3 === '') {
+          out.value = '';
+          return;
+        }
+
+        // collect numbers; mark invalid if non-numeric or empty
+        const arr = [
+          {field: in1, val: v1},
+          {field: in2, val: v2},
+          {field: in3, val: v3}
+        ];
+
+        const numbers = [];
+        let hadInvalid = false;
+
+        arr.forEach(obj => {
+          if (obj.val === '') {
+            // skip empty fields (treat as not provided)
+            return;
+          }
+          // parse number
+          const num = parseFloat(obj.val);
+          if (Number.isFinite(num)) {
+            numbers.push(num);
+          } else {
+            showErrorField(obj.field);
+            hadInvalid = true;
+          }
+        });
+
+        if (hadInvalid) {
+          out.value = '';
+          return;
+        }
+
+        if (numbers.length === 0) {
+          // none provided
+          out.value = '';
+          return;
+        }
+
+        // find smallest
+        const smallest = numbers.reduce((a,b) => a < b ? a : b);
+        // keep original formatting for integers no trailing .0
+        out.value = Number.isInteger(smallest) ? String(smallest) : String(smallest);
+      }
+
+      btn.addEventListener('click', findSmallest);
+
+      // Pressing Enter in any input triggers find
+      [in1, in2, in3].forEach(input => {
+        input.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            findSmallest();
+          }
+        });
+      });
+
+      // Optional: clear error highlight when user types
+      [in1, in2, in3].forEach(i => {
+        i.addEventListener('input', () => i.classList.remove('error'));
+      });
+    })();
+  </script>
+</body>
+</html>

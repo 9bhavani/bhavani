@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elderly Care Innovation – Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('https://images.unsplash.com/photo-1607746882042-944635dfe10e');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .register-card {
+      background: rgba(255, 255, 255, 0.95);
+      width: 100%;
+      max-width: 480px;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .brand h2 { margin: 0; color: #1a4d6e; }
+    .brand p { margin: 6px 0 0; font-size: 14px; color: #555; }
+
+    label { font-weight: bold; font-size: 14px; }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin: 6px 0 14px;
+      font-size: 15px;
+    }
+
+    .row { display: flex; gap: 10px; }
+    .row > div { flex: 1; }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #1a4d6e;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .btn.secondary { background: #2c9c7c; }
+
+    .links {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .links a { text-decoration: none; color: #1a4d6e; }
+
+    .accessibility {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .high-contrast {
+      background: black !important;
+      color: yellow !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="register-card" id="registerCard">
+
+    <div class="brand">
+      <h2 id="formTitle">Elderly Care Innovation</h2>
+      <p>New User Registration</p>
+    </div>
+
+    <!-- LANGUAGE DROPDOWN -->
+    <label>Language</label>
+    <select id="languageSelect" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="kn">Kannada</option>
+      <option value="te">Telugu</option>
+    </select>
+
+    <label>Register As</label>
+    <select>
+      <option>Elderly</option>
+      <option>Caretaker / Family</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label id="nameLabel">First Name</label>
+        <input type="text" placeholder="First Name">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" placeholder="Last Name">
+      </div>
+    </div>
+
+    <label>Age</label>
+    <input type="number" placeholder="Enter age">
+
+    <label>Mobile Number</label>
+    <input type="tel" placeholder="Enter mobile number">
+
+    <label id="emailLabel">Email</label>
+    <input type="email" placeholder="Enter email">
+
+    <label id="passwordLabel">Create Password</label>
+    <input type="password" placeholder="Create password">
+
+    <label>Confirm Password</label>
+    <input type="password" placeholder="Confirm password">
+
+    <label>Address</label>
+    <input type="text" placeholder="Enter full address">
+
+    <label>Blood Group</label>
+    <select>
+      <option>A+</option><option>A-</option>
+      <option>B+</option><option>B-</option>
+      <option>AB+</option><option>AB-</option>
+      <option>O+</option><option>O-</option>
+    </select>
+
+    <label>Any Existing Medical Condition</label>
+    <input type="text" placeholder="Diabetes, BP, etc.">
+
+    <label>Emergency Contact Number</label>
+    <input type="tel" placeholder="Emergency contact">
+
+    <button class="btn" id="submitBtn">Create Account</button>
+    <button class="btn secondary">Verify with OTP</button>
+
+    <div class="accessibility">
+      <label><input type="checkbox" onchange="toggleContrast()"> High Contrast</label>
+      <label><input type="checkbox"> Voice Assistance</label>
+    </div>
+
+    <div class="links">Already have an account? <a href="login.html">Login Here</a></div>
+  </div>
+
+  <script>
+    function toggleContrast() {
+      document.getElementById("registerCard").classList.toggle("high-contrast");
+    }
+  </script>
+
+  <!-- LANGUAGE SYSTEM SCRIPT -->
+  <script>
+    const translations = {
+      en: {
+        formTitle: "Elderly Care Innovation",
+        name: "First Name",
+        email: "Email",
+        password: "Create Password",
+        submit: "Create Account"
+      },
+      hi: {
+        formTitle: "एल्डरली केयर इनोवेशन",
+        name: "पहला नाम",
+        email: "ईमेल",
+        password: "पासवर्ड बनाएं",
+        submit: "खाता बनाएँ"
+      },
+      kn: {
+        formTitle: "ಎಲ್ಡರ್‌ಲಿ ಕೇರ್ ಇನೋವೇಷನ್",
+        name: "ಪ್ರಥಮ ಹೆಸರು",
+        email: "ಇಮೇಲ್",
+        password: "ಪಾಸ್ವರ್ಡ್ ರಚಿಸಿ",
+        submit: "ಖಾತೆ ರಚಿಸಿ"
+      },
+      te: {
+        formTitle: "ఎల్డర్లీ కేర్ ఇన్నోవేషన్",
+        name: "మొదటి పేరు",
+        email: "ఇమెయిల్",
+        password: "పాస్వర్డ్ సృష్టించండి",
+        submit: "ఖాతా సృష్టించండి"
+      }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById("languageSelect").value;
+      localStorage.setItem("lang", lang);
+
+      const t = translations[lang];
+
+      document.getElementById("formTitle").innerText = t.formTitle;
+      document.getElementById("nameLabel").innerText = t.name;
+      document.getElementById("emailLabel").innerText = t.email;
+      document.getElementById("passwordLabel").innerText = t.password;
+      document.getElementById("submitBtn").innerText = t.submit;
+    }
+
+    // Load saved language from login page
+    window.onload = function() {
+      const savedLang = localStorage.getItem("lang") || "en";
+      document.getElementById("languageSelect").value = savedLang;
+      changeLanguage();
+    };
+  </script>
+
+</body>
+</html>

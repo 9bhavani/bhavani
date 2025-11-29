@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Caretaker Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Feather icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; margin:0; padding:0; }
+    body { background: #eef5f9; }
+    header {
+      background: #1a4d6e;
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .container {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 18px;
+    }
+    a { text-decoration: none; }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 10px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      margin-top: 12px;
+      color: #1a4d6e;
+      font-size: 16px;
+    }
+    .card i {
+      width: 32px;
+      height: 32px;
+      color: #1a4d6e;
+    }
+    .sos {
+      background: #c0392b;
+      color: white;
+    }
+    .sos i { color: white; }
+    .sos h3 { color: white; }
+    footer {
+      background: #1a4d6e;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<header>Caretaker Dashboard</header>
+
+<div class="container">
+  <div class="card" onclick="openPage('live_health.html')">
+    <i data-feather="heart"></i>
+    <h3>Live Health Status</h3>
+  </div>
+
+  <div class="card" onclick="openPage('medicine.html')">
+    <i data-feather="bell"></i>
+    <h3>Medicine Adherence</h3>
+  </div>
+
+  <div class="card sos" onclick="openPage('alerts.html')">
+    <i data-feather="alert-triangle"></i>
+    <h3>Emergency Alerts</h3>
+  </div>
+
+  <div class="card" onclick="openPage('location.html')">
+    <i data-feather="map-pin"></i>
+    <h3>Location Tracking</h3>
+  </div>
+
+  <div class="card" onclick="openPage('appointment.html')">
+    <i data-feather="calendar"></i>
+    <h3>Appointment Management</h3>
+  </div>
+
+  <div class="card" onclick="openPage('reports.html')">
+    <i data-feather="file-text"></i>
+    <h3>Health Reports</h3>
+  </div>
+
+  <div class="card" onclick="openPage('call.html')">
+    <i data-feather="video"></i>
+    <h3>Video / Voice Call</h3>
+  </div>
+
+  <div class="card sos" onclick="openPage('emergency.html')">
+    <i data-feather="alert-circle"></i>
+    <h3>Active Emergency</h3>
+  </div>
+</div>
+
+<footer>Elderly Care Innovation © 2025</footer>
+
+<script>
+  feather.replace();
+
+  function openPage(page) {
+    window.location.href = page;
+  }
+</script>
+
+</body>
+</html>
